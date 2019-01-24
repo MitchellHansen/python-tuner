@@ -17,9 +17,9 @@ import pyaudio
 # and NOTE_MAX especially for guitar/bass. Probably want to keep
 # FRAME_SIZE and FRAMES_PER_FFT to be powers of two.
 
-NOTE_MIN = 60       # C4
-NOTE_MAX = 69       # A4
-FSAMP = 22050       # Sampling frequency in Hz
+NOTE_MIN = 1       # C4
+NOTE_MAX = 100       # A4
+FSAMP = 44100       # Sampling frequency in Hz
 FRAME_SIZE = 2048   # How many samples per frame?
 FRAMES_PER_FFT = 16 # FFT takes average across how many frames?
 
@@ -71,8 +71,7 @@ stream.start_stream()
 window = 0.5 * (1 - np.cos(np.linspace(0, 2*np.pi, SAMPLES_PER_FFT, False)))
 
 # Print initial text
-print 'sampling at', FSAMP, 'Hz with max resolution of', FREQ_STEP, 'Hz'
-print
+print('sampling at', FSAMP, 'Hz with max resolution of', FREQ_STEP, 'Hz')
 
 # As long as we are getting data:
 while stream.is_active():
@@ -95,5 +94,5 @@ while stream.is_active():
     num_frames += 1
 
     if num_frames >= FRAMES_PER_FFT:
-        print 'freq: {:7.2f} Hz     note: {:>3s} {:+.2f}'.format(
-            freq, note_name(n0), n-n0)
+        print('freq: {:7.2f} Hz     note: {:>3s} {:+.2f}'.format(
+            freq, note_name(n0), n-n0))
